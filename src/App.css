@@ -28,6 +28,11 @@ body {
   width: 100px;
   height: 35px;
 }
+.todo{
+  background-color: beige;
+  position: relative;
+  
+}
 
 
 .App-logo {

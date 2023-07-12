@@ -11,12 +11,16 @@ export const ToDoWrapper = () =>{
         setTodos([...todos,{id:uuidv4(),task:todo,completed:false,isEditing:false}])
         console.log(todos);
     }
+    const toggleComplete=id=>{
+        setTodos(todos.map(todo=>todo.id===id ? {...todo,completed: !todo.completed}: todo))
+    }
     return(
         <div className="ToDoWrapper">
+            <h1>Get Things Done!</h1>
             <ToDoForm addTodo={addTodo}/>
             {todos.map((todo,index) =>
                 (
-                    <Todo task={todo} key={index}/>
+                    <Todo task={todo} key={index} toggleComplete={toggleComplete}/>
                 ))}
         </div>
     )
