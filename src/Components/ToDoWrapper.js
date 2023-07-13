@@ -3,6 +3,7 @@ import { ToDoForm } from "./ToDoForm"
 import '../App.css'
 import {v4 as uuidv4} from 'uuid';
 import { Todo } from './Todo'
+import {EdittodoForm} from './EdittodoForm'
 uuidv4();//id oluşturmak için kullandım
 
 export const ToDoWrapper = () =>{
@@ -17,14 +18,24 @@ export const ToDoWrapper = () =>{
     const deleteTodo = id =>{
         setTodos(todos.filter(todo=>todo.id !== id))
     }
+    const editTodo = id =>{
+        setTodos(todos.map(todo=>todo.id === id ? {...todo,isEditing: !todo.isEditing}: todo))
+    }
+    const editTask = (task,id) =>{
+        setTodos(todos.map(todo=>todo.id===id ? {...todo,task,isEditing: !todo.isEditing}:todo))
+    }
     return(
         <div className="ToDoWrapper">
             <h1>Get Things Done!</h1>
             <ToDoForm addTodo={addTodo}/>
-            {todos.map((todo,index) =>
-                (
-                    <Todo task={todo} key={index} toggleComplete={toggleComplete} deleteTodo={deleteTodo}/>
-                ))}
+            {todos.map((todo,index) =>(
+                todo.isEditing ? (
+                    <EdittodoForm editTodo={editTask} task={todo}/>
+                ):(
+                    <Todo task={todo} key={index} toggleComplete={toggleComplete} deleteTodo={deleteTodo} editTodo={editTodo}/>
+                )
+            )
+            )}
         </div>
     )
 }

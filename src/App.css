@@ -51,11 +51,13 @@ h1 {
   width: 300px;
   color: #fff;
   border-radius: 5px;
+  border-style:dashed;
 }
 
 .todo-input::placeholder {
-  color: #ffffff4d;
+  color: #b7accd4d;
   border-radius: 5px;
+  
 }
 
 .todo-btn {
@@ -87,7 +89,7 @@ h1 {
 }
 
 .completed {
-  color: #40dc32;
+  color: black;
   text-decoration: line-through;
 }
  
